@@ -3,10 +3,8 @@
 // V3 Fresh Index
 $env = [
     'APP_ENV' => 'production',
-    'APP_DEBUG' => 'true',
-
-    'LOG_CHANNEL' => 'null',
-
+    'APP_DEBUG' => 'false',
+    'LOG_CHANNEL' => 'stderr',
     'SESSION_DRIVER' => 'cookie',
     'CACHE_DRIVER' => 'array',
     'VIEW_COMPILED_PATH' => '/tmp',

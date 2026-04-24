@@ -18,13 +18,16 @@ Route::get('/', [TrackingController::class, 'landing'])->name('landing');
 
 Route::get('/migrate', function () {
     try {
+        $output = '';
         Artisan::call('migrate:fresh', ['--force' => true]);
-
+        $output .= Artisan::output();
         Artisan::call('db:seed', ['--force' => true]);
-        return 'Migration & Seeding successful: <pre>' . Artisan::output() . '</pre>';
+        $output .= Artisan::output();
+        return 'Migration & Seeding successful: <pre>' . $output . '</pre>';
     } catch (\Exception $e) {
-        return 'Migration/Seeding failed: ' . $e->getMessage();
+        return 'Migration/Seeding failed: ' . $e->getMessage() . '<br><pre>' . Artisan::output() . '</pre>';
     }
+
 });
 
 Route::post('/tracking', [TrackingController::class, 'track'])->name('tracking');

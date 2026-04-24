@@ -1,6 +1,6 @@
 <?php
 
-// Force production environment and TiDB settings
+// V3 Fresh Index
 $env = [
     'APP_ENV' => 'production',
     'APP_DEBUG' => 'false',

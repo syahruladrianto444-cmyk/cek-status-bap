@@ -1,10 +1,18 @@
 {
     "name": "tracking-bap",
     "version": 2,
+    "env": {
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "cookie",
+        "CACHE_DRIVER": "array",
+        "VIEW_COMPILED_PATH": "/tmp"
+    },
     "builds": [
         {
             "src": "api/index.php",
-            "use": "vercel-php@0.6.1"
+            "use": "vercel-php@0.9.0"
         },
         {
             "src": "/public/**",

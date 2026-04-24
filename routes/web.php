@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemohonController;
 use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TrackingController::class, 'landing'])->name('landing');
+
+Route::get('/migrate', function () {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        Artisan::call('db:seed', ['--force' => true]);
+        return 'Migration & Seeding successful: <pre>' . Artisan::output() . '</pre>';
+    } catch (\Exception $e) {
+        return 'Migration/Seeding failed: ' . $e->getMessage();
+    }
+});
+
 Route::post('/tracking', [TrackingController::class, 'track'])->name('tracking');
 
 /*

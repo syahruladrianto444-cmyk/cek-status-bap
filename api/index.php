@@ -4,7 +4,8 @@
 $env = [
     'APP_ENV' => 'production',
     'APP_DEBUG' => 'false',
-    'LOG_CHANNEL' => 'stderr',
+    'LOG_CHANNEL' => 'null',
+
     'SESSION_DRIVER' => 'cookie',
     'CACHE_DRIVER' => 'array',
     'VIEW_COMPILED_PATH' => '/tmp',

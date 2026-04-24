@@ -1,11 +1,26 @@
 <?php
 
-// Ensure production environment on Vercel
-putenv('APP_ENV=production');
-putenv('APP_DEBUG=false');
-putenv('LOG_CHANNEL=stderr');
-putenv('SESSION_DRIVER=cookie');
-putenv('CACHE_DRIVER=array');
-putenv('VIEW_COMPILED_PATH=/tmp');
+// Force production environment and TiDB settings
+$env = [
+    'APP_ENV' => 'production',
+    'APP_DEBUG' => 'false',
+    'LOG_CHANNEL' => 'stderr',
+    'SESSION_DRIVER' => 'cookie',
+    'CACHE_DRIVER' => 'array',
+    'VIEW_COMPILED_PATH' => '/tmp',
+    'DB_CONNECTION' => 'mysql',
+    'DB_HOST' => 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+    'DB_PORT' => '4000',
+    'DB_DATABASE' => 'test',
+    'DB_USERNAME' => '3HmEguLRggppLdM.root',
+    'DB_PASSWORD' => 'bjihRFNq2ZQgh0Yz',
+    'MYSQL_ATTR_SSL_CA' => '/etc/pki/tls/certs/ca-bundle.crt',
+];
+
+foreach ($env as $key => $value) {
+    putenv("$key=$value");
+    $_ENV[$key] = $value;
+    $_SERVER[$key] = $value;
+}
 
 require __DIR__ . '/../public/index.php';

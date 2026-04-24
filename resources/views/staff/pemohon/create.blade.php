@@ -41,9 +41,9 @@
                     <label for="jenis_permohonan" class="block text-sm font-medium text-gray-700">Jenis Layanan <span class="text-red-500">*</span></label>
                     <select name="jenis_permohonan" id="jenis_permohonan" class="mt-1 input-field" required>
                         <option value="">-- Pilih Jenis --</option>
-                        <option value="Paspor Baru" {{ old('jenis_permohonan', $pemohon->jenis_permohonan ?? '') === 'Paspor Baru' ? 'selected' : '' }}>Paspor Baru</option>
-                        <option value="Perpanjangan Paspor" {{ old('jenis_permohonan', $pemohon->jenis_permohonan ?? '') === 'Perpanjangan Paspor' ? 'selected' : '' }}>Perpanjangan Paspor</option>
-                        <option value="Penggantian Hilang/Rusak" {{ old('jenis_permohonan', $pemohon->jenis_permohonan ?? '') === 'Penggantian Hilang/Rusak' ? 'selected' : '' }}>Penggantian Hilang/Rusak</option>
+                        <option value="Paspor Hilang" {{ old('jenis_permohonan', $pemohon->jenis_permohonan ?? '') === 'Paspor Hilang' ? 'selected' : '' }}>Paspor Hilang</option>
+                        <option value="Paspor Rusak" {{ old('jenis_permohonan', $pemohon->jenis_permohonan ?? '') === 'Paspor Rusak' ? 'selected' : '' }}>Paspor Rusak</option>
+                        <option value="Paspor Beda Data" {{ old('jenis_permohonan', $pemohon->jenis_permohonan ?? '') === 'Paspor Beda Data' ? 'selected' : '' }}>Paspor Beda Data</option>
                     </select>
                     @error('jenis_permohonan') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>

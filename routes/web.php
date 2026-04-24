@@ -22,8 +22,8 @@ Route::post('/tracking', [TrackingController::class, 'track'])->name('tracking')
 */
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/masuk-petugas', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/masuk-petugas', [AuthController::class, 'login']);
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
@@ -35,7 +35,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/panel-pusat', [DashboardController::class, 'index'])->name('dashboard');
 
     // CRUD Pemohon
     Route::resource('pemohon', PemohonController::class);
@@ -45,4 +45,7 @@ Route::middleware('auth')->group(function () {
         ->name('pemohon.update-status');
     Route::post('/pemohon/{pemohon}/update-status', [PemohonController::class, 'updateStatus'])
         ->name('pemohon.update-status.store');
+
+    Route::get('/pemohon/{pemohon}/whatsapp', [PemohonController::class, 'whatsapp'])
+        ->name('pemohon.whatsapp');
 });

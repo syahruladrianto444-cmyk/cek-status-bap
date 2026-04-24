@@ -34,12 +34,12 @@
         </div>
     </div>
 
-    {{-- Menunggu Persetujuan --}}
+    {{-- Pemeriksaan Pejabat --}}
     <div class="card p-6 border-l-4 border-l-amber-500">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm font-medium text-gray-500 mb-1">Di Kasubsi</p>
-                <h3 class="text-3xl font-bold text-gray-900">{{ $statusCounts['Proses Penindakan di Kasubsi'] ?? 0 }}</h3>
+                <p class="text-sm font-medium text-gray-500 mb-1">Di Pejabat</p>
+                <h3 class="text-3xl font-bold text-gray-900">{{ $statusCounts['Pemeriksaan oleh Pejabat'] ?? 0 }}</h3>
             </div>
             <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center text-amber-500">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
@@ -51,8 +51,8 @@
     <div class="card p-6 border-l-4 border-l-emerald-500">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm font-medium text-gray-500 mb-1">Selesai BAP</p>
-                <h3 class="text-3xl font-bold text-gray-900">{{ $statusCounts['Selesai BAP'] ?? 0 }}</h3>
+                <p class="text-sm font-medium text-gray-500 mb-1">Hasil BAP</p>
+                <h3 class="text-3xl font-bold text-gray-900">{{ $statusCounts['Hasil BAP'] ?? 0 }}</h3>
             </div>
             <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -80,11 +80,10 @@
                                 $total = array_sum($statusCounts) > 0 ? array_sum($statusCounts) : 1;
                                 $percentage = (($statusCounts[$status] ?? 0) / $total) * 100;
                                 $colorClass = match($status) {
-                                    'Selesai BAP' => 'bg-emerald-500',
-                                    'Diajukan ke Kepala Kantor' => 'bg-blue-500',
-                                    'Proses Penindakan di Kasubsi' => 'bg-amber-500',
-                                    'Wawancara BAP' => 'bg-gray-400',
-                                    default => 'bg-gray-200'
+                                    'Hasil BAP' => 'bg-emerald-500',
+                                    'Pemeriksaan oleh Pejabat' => 'bg-amber-500',
+                                    'Pemeriksaan BAP' => 'bg-blue-500',
+                                    default => 'bg-gray-400'
                                 };
                             @endphp
                             <div class="w-full bg-gray-200 rounded-full h-2">
@@ -144,6 +143,9 @@
                             </li>
                         @endforeach
                     </ul>
+                    <div class="p-4 border-t border-gray-100">
+                        {{ $recentActivities->links() }}
+                    </div>
                 @endif
             </div>
         </div>

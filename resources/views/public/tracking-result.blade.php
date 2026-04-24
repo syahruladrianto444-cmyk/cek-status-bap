@@ -13,13 +13,11 @@
                 Kembali ke Beranda
             </a>
         </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {{-- Left Column: Applicant Info --}}
             <div class="lg:col-span-1 border-0">
                 <div class="card p-6 h-full border-t-4 border-t-govt-blue">
                     <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-3">Informasi Pemohon</h3>
-
                     <div class="space-y-4">
                         <div>
                             <p class="text-sm text-gray-500 font-medium">Nomor Berkas</p>
@@ -27,15 +25,18 @@
                         </div>
 
                         <div>
+                            <p class="text-sm text-gray-500 font-medium">NIK</p>
+                            <p class="text-base font-medium text-gray-900">{{ $pemohon->masked_nik }}</p>
+                        </div>
+
+                        <div>
                             <p class="text-sm text-gray-500 font-medium">Nama Lengkap</p>
-                            {{-- Masking name for privacy: A**** B**** --}}
-                            @php
-                                $nameParts = explode(' ', $pemohon->nama_lengkap);
-                                $maskedName = collect($nameParts)->map(function($part) {
-                                    return substr($part, 0, 1) . str_repeat('*', strlen($part) - 1);
-                                })->join(' ');
-                            @endphp
-                            <p class="text-base font-medium text-gray-900">{{ $maskedName }}</p>
+                            <p class="text-base font-medium text-gray-900">{{ $pemohon->masked_nama_lengkap }}</p>
+                        </div>
+
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Tempat, Tgl Lahir</p>
+                            <p class="text-base font-medium text-gray-900">{{ $pemohon->masked_tempat_lahir }}, {{ $pemohon->masked_tanggal_lahir }}</p>
                         </div>
 
                         <div>

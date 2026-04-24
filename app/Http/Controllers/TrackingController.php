@@ -15,17 +15,20 @@ class TrackingController extends Controller
     public function track(Request $request)
     {
         $request->validate([
-            'nomor_berkas' => 'required|string',
+            'nik' => 'required|string',
         ]);
 
-        $pemohon = Pemohon::where('nomor_berkas', $request->nomor_berkas)
+        $nik_hash = hash('sha256', $request->nik);
+
+        $pemohon = Pemohon::where('nik_hash', $nik_hash)
             ->with(['statusHistories.updatedByUser'])
+            ->latest()
             ->first();
 
         if (!$pemohon) {
             return back()
                 ->withInput()
-                ->withErrors(['nomor_berkas' => 'Data tidak ditemukan. Pastikan nomor berkas yang Anda masukkan sudah benar.']);
+                ->withErrors(['nik' => 'Data tidak ditemukan. Pastikan NIK yang Anda masukkan sudah benar.']);
         }
 
         $statusFlow = Pemohon::STATUS_FLOW;

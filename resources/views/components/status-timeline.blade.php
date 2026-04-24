@@ -10,6 +10,7 @@
 
         @foreach($statusFlow as $index => $flowStatus)
             @php
+                $displayStatus = \App\Models\Pemohon::APPLICANT_STATUS_MAPPING[$flowStatus] ?? $flowStatus;
                 $isCompleted = $index <= $currentIndex;
                 $isCurrent = $index === $currentIndex;
                 $isPending = $index > $currentIndex;
@@ -45,7 +46,7 @@
                         </div>
                     </div>
                     <div class="ml-4 md:ml-6 mt-1 flex-1">
-                        <h4 class="text-lg {{ $textColor }}">{{ $flowStatus }}</h4>
+                        <h4 class="text-lg {{ $textColor }}">{{ $displayStatus }}</h4>
                         
                         @if($history)
                             <div class="mt-2 bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm relative overflow-hidden {{ $isCurrent ? 'ring-1 ring-govt-blue border-govt-blue' : '' }}">
@@ -73,6 +74,33 @@
                                     <p class="text-sm text-gray-600 mt-1 italic">{{ $history->keterangan }}</p>
                                 @endif
                             </div>
+
+                            {{-- Small Notification Alert --}}
+                            @if($flowStatus === 'Hasil BAP' && $history?->status_detail === 'Disetujui')
+                                <div class="mt-4 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg shadow-sm">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <h3 class="text-sm font-bold text-emerald-800 uppercase tracking-wider">Pemberitahuan:</h3>
+                                            <div class="mt-1 text-sm text-emerald-700 leading-relaxed">
+                                                <p>Proses BAP Anda telah <strong>SELESAI</strong>. Silahkan datang ke Kantor Imigrasi Kelas I Non TPI Pemalang untuk tahap foto Paspor.</p>
+                                                <div class="mt-3 bg-white/50 p-2 rounded border border-emerald-100 grid grid-cols-2 gap-2 text-[11px] font-bold">
+                                                    <div>
+                                                        <span class="block text-emerald-600 text-[9px] uppercase tracking-tighter">Senin - Kamis</span>
+                                                        <span>08.00 - 15.00</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="block text-emerald-600 text-[9px] uppercase tracking-tighter">Jumat</span>
+                                                        <span>08.00 - 15.30</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         @elseif($isCurrent && !$history)
                             <p class="text-sm text-gray-500 mt-1">Sedang dalam proses.</p>
                         @elseif($isPending)

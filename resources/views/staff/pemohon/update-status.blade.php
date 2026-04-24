@@ -12,7 +12,7 @@
 
 @if($nextStatus === null)
     <div class="max-w-2xl mx-auto">
-        @if($currentStatus === 'Proses Penindakan di Kasubsi' && $pemohon->latestStatus?->status_detail === 'Penangguhan')
+        @if($currentStatus === 'Hasil BAP' && $pemohon->latestStatus?->status_detail === 'Penangguhan')
         <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl shadow-sm">
             <div class="flex">
                 <div class="flex-shrink-0">
@@ -98,11 +98,11 @@
                     <div class="mb-6">
                         <label for="keterangan" class="block text-sm font-medium text-gray-700 mb-2">
                             Keterangan Tambahan 
-                            @if($nextStatus !== 'Selesai BAP')<span class="text-gray-400 font-normal ml-1">(Opsional)</span>@endif
+                            @if($nextStatus !== 'Hasil BAP')<span class="text-gray-400 font-normal ml-1">(Opsional)</span>@endif
                         </label>
                         <textarea name="keterangan" id="keterangan" rows="4" 
                             class="input-field block w-full" 
-                            placeholder="{{ $nextStatus === 'Selesai BAP' ? 'Contoh: Lanjut ke tahap foto paspor' : 'Catatan hasil wawancara atau alasan penolakan...' }}">{{ old('keterangan') }}</textarea>
+                            placeholder="{{ $nextStatus === 'Hasil BAP' ? 'Catatan hasil keputusan BAP...' : 'Catatan hasil pemeriksaan atau masukan lainnya...' }}">{{ old('keterangan') }}</textarea>
                         @error('keterangan') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
 

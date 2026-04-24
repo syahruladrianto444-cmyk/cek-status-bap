@@ -74,81 +74,81 @@ class DatabaseSeeder extends Seeder
         $statusScenarios = [
             // Pemohon 1: Selesai BAP (completed all steps)
             1 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara telah dilaksanakan', 'days_ago' => 30],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Berkas memenuhi syarat', 'days_ago' => 25],
-                ['status' => 'Diajukan ke Kepala Kantor', 'status_detail' => 'Disetujui', 'keterangan' => 'Disetujui oleh Kepala Kantor', 'days_ago' => 20],
-                ['status' => 'Selesai BAP', 'status_detail' => null, 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 15],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara telah dilaksanakan', 'days_ago' => 30],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Berkas memenuhi syarat', 'days_ago' => 25],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Disetujui oleh Kepala Kantor', 'days_ago' => 20],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 15],
             ],
             // Pemohon 2: Diajukan ke Kepala Kantor
             2 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai', 'days_ago' => 20],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Diproses oleh Kasubsi', 'days_ago' => 15],
-                ['status' => 'Diajukan ke Kepala Kantor', 'status_detail' => null, 'keterangan' => 'Menunggu keputusan Kepala Kantor', 'days_ago' => 10],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai', 'days_ago' => 20],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Diproses oleh Kasubsi', 'days_ago' => 15],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => null, 'keterangan' => 'Menunggu keputusan Kepala Kantor', 'days_ago' => 10],
             ],
             // Pemohon 3: Proses di Kasubsi - Ditolak
             3 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara dilaksanakan', 'days_ago' => 15],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Ditolak', 'keterangan' => 'Dokumen tidak lengkap, harap melengkapi', 'days_ago' => 10],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara dilaksanakan', 'days_ago' => 15],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Ditolak', 'keterangan' => 'Dokumen tidak lengkap, harap melengkapi', 'days_ago' => 10],
             ],
             // Pemohon 4: Proses di Kasubsi - Penangguhan
             4 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara telah dilakukan', 'days_ago' => 12],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Penangguhan', 'keterangan' => 'Ditangguhkan menunggu verifikasi tambahan', 'days_ago' => 7],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara telah dilakukan', 'days_ago' => 12],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Penangguhan', 'keterangan' => 'Ditangguhkan menunggu verifikasi tambahan', 'days_ago' => 7],
             ],
             // Pemohon 5: Selesai BAP
             5 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai dilaksanakan', 'days_ago' => 28],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Berkas lengkap dan valid', 'days_ago' => 22],
-                ['status' => 'Diajukan ke Kepala Kantor', 'status_detail' => 'Disetujui', 'keterangan' => 'Permohonan disetujui', 'days_ago' => 18],
-                ['status' => 'Selesai BAP', 'status_detail' => null, 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 14],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai dilaksanakan', 'days_ago' => 28],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Berkas lengkap dan valid', 'days_ago' => 22],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Permohonan disetujui', 'days_ago' => 18],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 14],
             ],
-            // Pemohon 6: Wawancara BAP saja
+            // Pemohon 6: Pemeriksaan BAP saja
             6 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara jadwal hari ini', 'days_ago' => 5],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara jadwal hari ini', 'days_ago' => 5],
             ],
-            // Pemohon 7: Diajukan ke Kepala Kantor - Tidak Disetujui
+            // Pemohon 7: Hasil BAP - Tidak Disetujui
             7 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Selesai wawancara', 'days_ago' => 18],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Lanjut ke tahap berikutnya', 'days_ago' => 14],
-                ['status' => 'Diajukan ke Kepala Kantor', 'status_detail' => 'Tidak Disetujui', 'keterangan' => 'Perlu verifikasi ulang dokumen', 'days_ago' => 10],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Selesai wawancara', 'days_ago' => 18],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Lanjut ke tahap berikutnya', 'days_ago' => 14],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Ditolak', 'keterangan' => 'Perlu verifikasi ulang dokumen', 'days_ago' => 10],
             ],
-            // Pemohon 8: Proses di Kasubsi
+            // Pemohon 8: Proses di Pejabat
             8 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara dilakukan', 'days_ago' => 10],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => null, 'keterangan' => 'Sedang diproses oleh Kasubsi', 'days_ago' => 6],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara dilakukan', 'days_ago' => 10],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => null, 'keterangan' => 'Sedang diproses oleh Pejabat', 'days_ago' => 6],
             ],
-            // Pemohon 9: Wawancara BAP
+            // Pemohon 9: Pemeriksaan BAP
             9 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Jadwal wawancara telah dilaksanakan', 'days_ago' => 3],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Jadwal wawancara telah dilaksanakan', 'days_ago' => 3],
             ],
-            // Pemohon 10: Selesai BAP
+            // Pemohon 10: Hasil BAP
             10 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai', 'days_ago' => 25],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Disetujui Kasubsi', 'days_ago' => 20],
-                ['status' => 'Diajukan ke Kepala Kantor', 'status_detail' => 'Disetujui', 'keterangan' => 'Disetujui Kepala Kantor', 'days_ago' => 16],
-                ['status' => 'Selesai BAP', 'status_detail' => null, 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 12],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai', 'days_ago' => 25],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Disetujui Pejabat', 'days_ago' => 20],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Disetujui Kepala Kantor', 'days_ago' => 16],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 12],
             ],
             // Pemohon 11-15: Various states
             11 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara dilakukan', 'days_ago' => 8],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Berkas valid', 'days_ago' => 4],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara dilakukan', 'days_ago' => 8],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Berkas valid', 'days_ago' => 4],
             ],
             12 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Selesai wawancara', 'days_ago' => 6],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Selesai wawancara', 'days_ago' => 6],
             ],
             13 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara BAP selesai', 'days_ago' => 22],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Telah disetujui', 'days_ago' => 17],
-                ['status' => 'Diajukan ke Kepala Kantor', 'status_detail' => null, 'keterangan' => 'Menunggu keputusan', 'days_ago' => 13],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara BAP selesai', 'days_ago' => 22],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Telah disetujui', 'days_ago' => 17],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => null, 'keterangan' => 'Menunggu keputusan', 'days_ago' => 13],
             ],
             14 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara telah dilakukan', 'days_ago' => 4],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara telah dilakukan', 'days_ago' => 4],
             ],
             15 => [
-                ['status' => 'Wawancara BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai', 'days_ago' => 16],
-                ['status' => 'Proses Penindakan di Kasubsi', 'status_detail' => 'Disetujui', 'keterangan' => 'Dokumen lengkap', 'days_ago' => 12],
-                ['status' => 'Diajukan ke Kepala Kantor', 'status_detail' => 'Disetujui', 'keterangan' => 'Permohonan disetujui', 'days_ago' => 8],
-                ['status' => 'Selesai BAP', 'status_detail' => null, 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 5],
+                ['status' => 'Pemeriksaan BAP', 'status_detail' => null, 'keterangan' => 'Wawancara selesai', 'days_ago' => 16],
+                ['status' => 'Pemeriksaan oleh Pejabat', 'status_detail' => 'Disetujui', 'keterangan' => 'Dokumen lengkap', 'days_ago' => 12],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Permohonan disetujui', 'days_ago' => 8],
+                ['status' => 'Hasil BAP', 'status_detail' => 'Disetujui', 'keterangan' => 'Lanjut ke tahap foto paspor', 'days_ago' => 5],
             ],
         ];
 

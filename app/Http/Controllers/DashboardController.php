@@ -30,8 +30,7 @@ class DashboardController extends Controller
         // Aktivitas terbaru
         $recentActivities = StatusHistory::with(['pemohon', 'updatedByUser'])
             ->orderBy('created_at', 'desc')
-            ->limit(10)
-            ->get();
+            ->paginate(3);
 
         // Pemohon hari ini
         $todayCount = Pemohon::whereDate('tanggal_pengajuan', today())->count();

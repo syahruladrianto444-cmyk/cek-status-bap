@@ -15,6 +15,7 @@ class Pemohon extends Model
         'nomor_berkas',
         'nama_lengkap',
         'nik',
+        'nik_hash',
         'tempat_lahir',
         'tanggal_lahir',
         'alamat',
@@ -27,19 +28,47 @@ class Pemohon extends Model
     protected $casts = [
         'tanggal_lahir' => 'date',
         'tanggal_pengajuan' => 'date',
+        'nik' => 'encrypted',
+        'nama_lengkap' => 'encrypted',
+        'tempat_lahir' => 'encrypted',
+        'alamat' => 'encrypted',
+        'no_hp' => 'encrypted',
+        'email' => 'encrypted',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($pemohon) {
+            if ($pemohon->nik) {
+                $pemohon->nik_hash = hash('sha256', $pemohon->nik);
+            }
+        });
+
+        static::updating(function ($pemohon) {
+            if ($pemohon->isDirty('nik')) {
+                $pemohon->nik_hash = hash('sha256', $pemohon->nik);
+            }
+        });
+    }
 
     // Daftar status yang valid (urutan pipeline)
     public const STATUS_FLOW = [
-        'Wawancara BAP',
-        'Proses Penindakan di Kasubsi',
-        'Diajukan ke Kepala Kantor',
-        'Selesai BAP',
+        'Pemeriksaan BAP',
+        'Pemeriksaan oleh Pejabat',
+        'Hasil BAP',
     ];
 
     public const STATUS_DETAILS = [
-        'Proses Penindakan di Kasubsi' => ['Disetujui', 'Ditolak', 'Penangguhan'],
-        'Diajukan ke Kepala Kantor' => ['Disetujui', 'Tidak Disetujui'],
+        'Hasil BAP' => ['Disetujui', 'Ditolak', 'Penangguhan'],
+    ];
+
+    // Mapping ke status tampilan pemohon
+    public const APPLICANT_STATUS_MAPPING = [
+        'Pemeriksaan BAP' => 'Dalam Proses Pemeriksaan',
+        'Pemeriksaan oleh Pejabat' => 'Proses Pendalaman Pemeriksaan',
+        'Hasil BAP' => 'Hasil BAP(Selesai)',
     ];
 
     public function statusHistories()
@@ -58,6 +87,15 @@ class Pemohon extends Model
     public function getCurrentStatusAttribute()
     {
         return $this->latestStatus?->status ?? 'Belum Diproses';
+    }
+
+    /**
+     * Mendapatkan status untuk tampilan pemohon
+     */
+    public function getApplicantStatusAttribute()
+    {
+        $current = $this->current_status;
+        return self::APPLICANT_STATUS_MAPPING[$current] ?? $current;
     }
 
     /**
@@ -82,20 +120,90 @@ class Pemohon extends Model
 
         $latest = $this->latestStatus;
         if ($latest) {
-            // Stay in the same status if rejected so it can be re-evaluated
-            if ($latest->status === 'Proses Penindakan di Kasubsi' && $latest->status_detail === 'Ditolak') {
-                return self::STATUS_FLOW[$currentIndex]; 
-            }
-            if ($latest->status === 'Diajukan ke Kepala Kantor' && $latest->status_detail === 'Tidak Disetujui') {
-                return self::STATUS_FLOW[$currentIndex]; 
-            }
-            // If Penangguhan, stop the flow entirely
-            if ($latest->status === 'Proses Penindakan di Kasubsi' && $latest->status_detail === 'Penangguhan') {
-                return null;
+            // Stay in the same status if rejected or suspended so it can be re-evaluated or stopped
+            if ($latest->status === 'Hasil BAP' && ($latest->status_detail === 'Ditolak' || $latest->status_detail === 'Penangguhan')) {
+                return null; 
             }
         }
 
         $nextIndex = $currentIndex + 1;
         return $nextIndex < count(self::STATUS_FLOW) ? self::STATUS_FLOW[$nextIndex] : null;
+    }
+
+    /**
+     * Accessors for Masked Data
+     */
+    public function getMaskedNikAttribute()
+    {
+        try {
+            $nik = $this->nik;
+            if (!$nik) return '-';
+            return substr($nik, 0, 4) . '************';
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            return 'Data Error (Format)';
+        }
+    }
+
+    public function getMaskedNamaLengkapAttribute()
+    {
+        try {
+            $nama = $this->nama_lengkap;
+            if (!$nama) return '-';
+            $len = strlen($nama);
+            return substr($nama, 0, 2) . str_repeat('*', max(0, $len - 2));
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            return 'Data Error (Format)';
+        }
+    }
+
+    public function getMaskedTempatLahirAttribute()
+    {
+        try {
+            $tempat = $this->tempat_lahir;
+            if (!$tempat) return '-';
+            return substr($tempat, 0, 2) . '******';
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            return 'Data Error (Format)';
+        }
+    }
+
+    public function getMaskedTanggalLahirAttribute()
+    {
+        return '**.**.****';
+    }
+
+    public function getMaskedAlamatAttribute()
+    {
+        try {
+            $alamat = $this->alamat;
+            if (!$alamat) return '-';
+            return substr($alamat, 0, 5) . '****************';
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            return 'Data Error (Format)';
+        }
+    }
+
+    public function getMaskedNoHpAttribute()
+    {
+        try {
+            $no = $this->no_hp;
+            if (!$no) return '-';
+            return substr($no, 0, 4) . '********';
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            return 'Data Error (Format)';
+        }
+    }
+
+    public function getMaskedEmailAttribute()
+    {
+        try {
+            $email = $this->email;
+            if (!$email) return '-';
+            $parts = explode('@', $email);
+            if (count($parts) < 2) return '*******';
+            return substr($parts[0], 0, 2) . '***@' . $parts[1];
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            return 'Data Error (Format)';
+        }
     }
 }

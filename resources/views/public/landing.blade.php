@@ -16,8 +16,11 @@
                     LAYANAN PUBLIK IMIGRASI
                 </span>
                 <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-                    Sistem Pelacakan Status Berkas <span class="text-gold-400">BAP</span>
+                    <span class="text-gold-400">SIPAS BAP</span>
                 </h1>
+                <p class="text-2xl font-bold text-white mb-4">
+                    (Sistem Pelacakan Status Berita Acara Pemeriksaan)
+                </p>
                 <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed">
                     Pantau proses Berita Acara Pemeriksaan (BAP) paspor Anda secara transparan, mudah, dan real-time langsung dari perangkat Anda.
                 </p>
@@ -45,18 +48,18 @@
                             </svg>
                         </div>
                         <h2 class="text-3xl font-bold text-gray-900">Lacak Status Permohonan</h2>
-                        <p class="text-gray-500 mt-2">Masukkan nomor berkas BAP yang diberikan oleh petugas</p>
+                        <p class="text-gray-500 mt-2">Masukkan nomor NIK Anda untuk melihat progres BAP</p>
                     </div>
 
                     <form action="{{ route('tracking') }}" method="POST" class="max-w-2xl mx-auto">
                         @csrf
                         <div class="flex flex-col sm:flex-row gap-4">
                             <div class="flex-1">
-                                <label for="nomor_berkas" class="sr-only">Nomor Berkas</label>
-                                <input type="text" name="nomor_berkas" id="nomor_berkas" value="{{ old('nomor_berkas') }}"
+                                <label for="nik" class="sr-only">NIK</label>
+                                <input type="text" name="nik" id="nik" value="{{ old('nik') }}"
                                        class="input-field block w-full px-5 py-4 text-lg border-gray-300 rounded-xl focus:ring-govt-blue focus:border-govt-blue shadow-sm"
-                                       placeholder="Contoh: BAP-2024-XXXX" required>
-                                @error('nomor_berkas')
+                                       placeholder="Maksimal 16 digit NIK" required>
+                                @error('nik')
                                     <p class="mt-2 text-sm text-red-600 font-medium flex items-center">
                                         <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
                                         {{ $message }}
@@ -131,19 +134,15 @@
                         <div class="space-y-4 relative z-10">
                             <div class="flex items-center p-3 rounded-lg bg-white/5 border border-white/10">
                                 <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-govt-dark font-bold mr-4">1</span>
-                                <span class="text-gray-200">Wawancara BAP</span>
+                                <span class="text-gray-200">Dalam Proses Pemeriksaan</span>
                             </div>
                             <div class="flex items-center p-3 rounded-lg bg-white/5 border border-white/10">
                                 <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-govt-dark font-bold mr-4">2</span>
-                                <span class="text-gray-200">Proses Penindakan Kasubsi</span>
+                                <span class="text-gray-200">Proses Pendalaman Pemeriksaan</span>
                             </div>
                             <div class="flex items-center p-3 rounded-lg bg-white/5 border border-white/10">
                                 <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-govt-dark font-bold mr-4">3</span>
-                                <span class="text-gray-200">Persetujuan Kepala Kantor</span>
-                            </div>
-                            <div class="flex items-center p-3 rounded-lg bg-white/5 border border-white/10">
-                                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-govt-dark font-bold mr-4">4</span>
-                                <span class="text-gray-200">Selesai (Foto Paspor)</span>
+                                <span class="text-gray-200">Hasil BAP(Selesai)</span>
                             </div>
                         </div>
                     </div>

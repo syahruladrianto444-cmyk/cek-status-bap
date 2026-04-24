@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Staff - Tracking BAP</title>
+    <title>Login Staff - SIPAS BAP</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-govt-light to-gray-200">
     <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
-        <div>
-            <div class="mx-auto w-16 h-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-lg shadow-gold-500/30">
-                <svg class="w-8 h-8 text-govt-dark" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-            </div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-govt-dark tracking-tight">
-                Staff Panel
+        <div class="text-center">
+            <img src="{{ asset('images/logo-imigrasi.png') }}" alt="Logo Imigrasi" class="mx-auto h-10 w-auto mb-4 object-contain">
+            <h2 class="text-center text-3xl font-extrabold text-govt-dark tracking-tight">
+                SIPAS BAP
             </h2>
+            <p class="text-gold-600 font-bold text-xs uppercase tracking-widest mt-1">Admin Panel Pusat</p>
             <p class="mt-2 text-center text-sm text-gray-500">
                 Sistem Tracking BAP Imigrasi
             </p>

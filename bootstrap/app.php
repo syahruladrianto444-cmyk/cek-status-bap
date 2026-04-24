@@ -13,6 +13,15 @@
 
 class VercelApplication extends Illuminate\Foundation\Application
 {
+    public function __construct($basePath = null)
+    {
+        if (isset($_SERVER['VERCEL'])) {
+            die("VercelApplication is running");
+
+        }
+        parent::__construct($basePath);
+    }
+
     public function getCachedPackagesPath(): string
     {
         return '/tmp/laravel_packages.php';

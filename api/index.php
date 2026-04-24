@@ -14,8 +14,11 @@ $env = [
     'DB_DATABASE' => 'test',
     'DB_USERNAME' => '3HmEguLRggppLdM.root',
     'DB_PASSWORD' => 'bjihRFNq2ZQgh0Yz',
+    'APP_URL' => 'https://tracking-bap.vercel.app',
+    'ASSET_URL' => 'https://tracking-bap.vercel.app',
     'MYSQL_ATTR_SSL_CA' => '/etc/pki/tls/certs/ca-bundle.crt',
 ];
+
 
 foreach ($env as $key => $value) {
     putenv("$key=$value");

@@ -16,22 +16,8 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', [TrackingController::class, 'landing'])->name('landing');
 
-Route::get('/migrate', function () {
-    try {
-        $output = '';
-        DB::statement('DROP TABLE IF EXISTS users, password_reset_tokens, failed_jobs, personal_access_tokens, pemohon, status_histories, migrations');
-        $output .= "Tables dropped.\n";
-        Artisan::call('migrate', ['--force' => true]);
-        $output .= Artisan::output();
-        Artisan::call('db:seed', ['--force' => true]);
-        $output .= Artisan::output();
-        return 'Migration & Seeding successful: <pre>' . $output . '</pre>';
-    } catch (\Exception $e) {
-        return 'Migration/Seeding failed: ' . $e->getMessage() . '<br><pre>' . Artisan::output() . '</pre>';
-    }
 
 
-});
 
 Route::post('/tracking', [TrackingController::class, 'track'])->name('tracking');
 

@@ -18,5 +18,8 @@ yarn-error.log
 /.vscode
 
 .vercel
-/bootstrap/cache/*.php
+/bootstrap/cache/services.php
 !/bootstrap/cache/.gitignore
+
+
+.vercel

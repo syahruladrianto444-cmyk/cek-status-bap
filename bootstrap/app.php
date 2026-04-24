@@ -16,9 +16,9 @@ class VercelApplication extends Illuminate\Foundation\Application
     public function __construct($basePath = null)
     {
         if (isset($_SERVER['VERCEL'])) {
-            die("VercelApplication is running");
-
+            // Vercel bootstrap
         }
+
         parent::__construct($basePath);
     }
 

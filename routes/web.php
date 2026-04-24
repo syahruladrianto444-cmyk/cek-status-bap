@@ -18,7 +18,8 @@ Route::get('/', [TrackingController::class, 'landing'])->name('landing');
 
 Route::get('/migrate', function () {
     try {
-        Artisan::call('migrate', ['--force' => true]);
+        Artisan::call('migrate:fresh', ['--force' => true]);
+
         Artisan::call('db:seed', ['--force' => true]);
         return 'Migration & Seeding successful: <pre>' . Artisan::output() . '</pre>';
     } catch (\Exception $e) {

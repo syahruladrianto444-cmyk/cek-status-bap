@@ -11,9 +11,33 @@
 |
 */
 
-$app = new Illuminate\Foundation\Application(
+class VercelApplication extends Illuminate\Foundation\Application
+{
+    public function getCachedPackagesPath(): string
+    {
+        return '/tmp/packages.php';
+    }
+
+    public function getCachedServicesPath(): string
+    {
+        return '/tmp/services.php';
+    }
+
+    public function getCachedConfigPath(): string
+    {
+        return '/tmp/config.php';
+    }
+
+    public function getCachedRoutesPath(): string
+    {
+        return '/tmp/routes.php';
+    }
+}
+
+$app = new VercelApplication(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
 
 /*
 |--------------------------------------------------------------------------

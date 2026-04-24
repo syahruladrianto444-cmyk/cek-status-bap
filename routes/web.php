@@ -19,7 +19,9 @@ Route::get('/', [TrackingController::class, 'landing'])->name('landing');
 Route::get('/migrate', function () {
     try {
         $output = '';
-        Artisan::call('migrate:fresh', ['--force' => true]);
+        DB::statement('DROP TABLE IF EXISTS users, password_reset_tokens, failed_jobs, personal_access_tokens, pemohon, status_histories, migrations');
+        $output .= "Tables dropped.\n";
+        Artisan::call('migrate', ['--force' => true]);
         $output .= Artisan::output();
         Artisan::call('db:seed', ['--force' => true]);
         $output .= Artisan::output();
@@ -27,6 +29,7 @@ Route::get('/migrate', function () {
     } catch (\Exception $e) {
         return 'Migration/Seeding failed: ' . $e->getMessage() . '<br><pre>' . Artisan::output() . '</pre>';
     }
+
 
 });
 

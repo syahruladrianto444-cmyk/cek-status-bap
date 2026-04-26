@@ -16,6 +16,7 @@ $env = [
     'DB_PASSWORD' => 'bjihRFNq2ZQgh0Yz',
     'APP_URL' => 'https://tracking-bap.vercel.app',
     'ASSET_URL' => 'https://tracking-bap.vercel.app',
+    'APP_KEY' => 'base64:zrEOuEhUZ8JJQ1nwmLDHYKwq2kr94rFSiSFT5f9yTzs=',
     'MYSQL_ATTR_SSL_CA' => '/etc/pki/tls/certs/ca-bundle.crt',
 ];
 

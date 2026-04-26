@@ -57,7 +57,7 @@
                                 <div class="flex flex-wrap items-center justify-between gap-y-2 gap-x-4 mb-2">
                                     <div class="flex items-center text-sm text-gray-500">
                                         <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        {{ $history->created_at->translatedFormat('d M Y, H:i') }}
+                                        {{ $history->created_at->timezone('Asia/Jakarta')->translatedFormat('d M Y, H:i') }} WIB
                                     </div>
                                     
                                     @if($history->status_detail)

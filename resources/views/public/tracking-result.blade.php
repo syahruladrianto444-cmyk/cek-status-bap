@@ -41,7 +41,7 @@
 
                         <div>
                             <p class="text-sm text-gray-500 font-medium">Tanggal Pengajuan</p>
-                            <p class="text-base font-medium text-gray-900">{{ $pemohon->tanggal_pengajuan->translatedFormat('d F Y') }}</p>
+                            <p class="text-base font-medium text-gray-900">{{ $pemohon->tanggal_pengajuan->timezone('Asia/Jakarta')->translatedFormat('d F Y') }}</p>
                         </div>
 
                         <div>
@@ -75,7 +75,6 @@
                 <div class="card p-6 border-t-4 border-t-gold-500 h-full">
                     <h3 class="text-xl font-bold text-gray-900 mb-6 border-b pb-3 flex justify-between items-center">
                         <span>Status Permohonan Saat Ini</span>
-                        <x-status-badge :status="$pemohon->current_status" />
                     </h3>
 
                     @if($pemohon->statusHistories->isEmpty())

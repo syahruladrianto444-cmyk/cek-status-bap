@@ -24,24 +24,23 @@ class VercelApplication extends Illuminate\Foundation\Application
 
     public function getCachedPackagesPath(): string
     {
-        return '/tmp/laravel_packages.php';
+        return isset($_SERVER['VERCEL']) || env('VERCEL') ? '/tmp/laravel_packages.php' : parent::getCachedPackagesPath();
     }
 
     public function getCachedServicesPath(): string
     {
-        return '/tmp/laravel_services.php';
+        return isset($_SERVER['VERCEL']) || env('VERCEL') ? '/tmp/laravel_services.php' : parent::getCachedServicesPath();
     }
 
     public function getCachedConfigPath(): string
     {
-        return '/tmp/laravel_config.php';
+        return isset($_SERVER['VERCEL']) || env('VERCEL') ? '/tmp/laravel_config.php' : parent::getCachedConfigPath();
     }
 
     public function getCachedRoutesPath(): string
     {
-        return '/tmp/laravel_routes.php';
+        return isset($_SERVER['VERCEL']) || env('VERCEL') ? '/tmp/laravel_routes.php' : parent::getCachedRoutesPath();
     }
-
 }
 
 $app = new VercelApplication(

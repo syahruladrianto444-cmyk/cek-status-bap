@@ -67,8 +67,8 @@ class Pemohon extends Model
     // Mapping ke status tampilan pemohon
     public const APPLICANT_STATUS_MAPPING = [
         'Pemeriksaan BAP' => 'Dalam Proses Pemeriksaan',
-        'Pemeriksaan oleh Pejabat' => 'Proses Pendalaman Pemeriksaan',
-        'Hasil BAP' => 'Hasil BAP(Selesai)',
+        'Pemeriksaan oleh Pejabat' => 'Proses Verifikasi',
+        'Hasil BAP' => 'Hasil BAP',
     ];
 
     public function statusHistories()
@@ -122,7 +122,7 @@ class Pemohon extends Model
         if ($latest) {
             // Stay in the same status if rejected or suspended so it can be re-evaluated or stopped
             if ($latest->status === 'Hasil BAP' && ($latest->status_detail === 'Ditolak' || $latest->status_detail === 'Penangguhan')) {
-                return null; 
+                return 'Hasil BAP'; 
             }
         }
 

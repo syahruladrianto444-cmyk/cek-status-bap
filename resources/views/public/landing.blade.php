@@ -138,11 +138,11 @@
                             </div>
                             <div class="flex items-center p-3 rounded-lg bg-white/5 border border-white/10">
                                 <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-govt-dark font-bold mr-4">2</span>
-                                <span class="text-gray-200">Proses Pendalaman Pemeriksaan</span>
+                                <span class="text-gray-200">Proses Verifikasi</span>
                             </div>
                             <div class="flex items-center p-3 rounded-lg bg-white/5 border border-white/10">
                                 <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-govt-dark font-bold mr-4">3</span>
-                                <span class="text-gray-200">Hasil BAP(Selesai)</span>
+                                <span class="text-gray-200">Hasil BAP</span>
                             </div>
                         </div>
                     </div>

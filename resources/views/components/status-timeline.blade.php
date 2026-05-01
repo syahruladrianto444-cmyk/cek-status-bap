@@ -76,30 +76,80 @@
                             </div>
 
                             {{-- Small Notification Alert --}}
-                            @if($flowStatus === 'Hasil BAP' && $history?->status_detail === 'Disetujui')
-                                <div class="mt-4 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg shadow-sm">
-                                    <div class="flex">
-                                        <div class="flex-shrink-0">
-                                            <svg class="h-5 w-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
-                                        </div>
-                                        <div class="ml-3">
-                                            <h3 class="text-sm font-bold text-emerald-800 uppercase tracking-wider">Pemberitahuan:</h3>
-                                            <div class="mt-1 text-sm text-emerald-700 leading-relaxed">
-                                                <p>Proses BAP Anda telah <strong>SELESAI</strong>. Silahkan datang ke Kantor Imigrasi Kelas I Non TPI Pemalang untuk tahap foto Paspor.</p>
-                                                <div class="mt-3 bg-white/50 p-2 rounded border border-emerald-100 grid grid-cols-2 gap-2 text-[11px] font-bold">
-                                                    <div>
-                                                        <span class="block text-emerald-600 text-[9px] uppercase tracking-tighter">Senin - Kamis</span>
-                                                        <span>08.00 - 15.00</span>
-                                                    </div>
-                                                    <div>
-                                                        <span class="block text-emerald-600 text-[9px] uppercase tracking-tighter">Jumat</span>
-                                                        <span>08.00 - 15.30</span>
+                            @if($flowStatus === 'Hasil BAP' && $history)
+                                @if($history->status_detail === 'Disetujui')
+                                    <div class="mt-4 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg shadow-sm">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="h-5 w-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="text-sm font-bold text-emerald-800 uppercase tracking-wider">Pemberitahuan:</h3>
+                                                <div class="mt-1 text-sm text-emerald-700 leading-relaxed">
+                                                    <p>Diberitahukan bahwa proses BAP Anda telah selesai dan dapat dilanjutkan pada tahap foto Paspor. Dipersilahkan datang ke Kantor Imigrasi Kelas I Non TPI Pemalang pada hari dan jam kerja.</p>
+                                                    <div class="mt-3 bg-white/50 p-2 rounded border border-emerald-100 grid grid-cols-2 gap-2 text-[11px] font-bold">
+                                                        <div>
+                                                            <span class="block text-emerald-600 text-[9px] uppercase tracking-tighter">Senin s/d Kamis</span>
+                                                            <span>08.00 - 15.00</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="block text-emerald-600 text-[9px] uppercase tracking-tighter">Jumat</span>
+                                                            <span>08.00 - 15.30</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @elseif($history->status_detail === 'Penangguhan')
+                                    <div class="mt-4 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg shadow-sm">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="text-sm font-bold text-red-800 uppercase tracking-wider">Pemberitahuan:</h3>
+                                                <div class="mt-1 text-sm text-red-700 leading-relaxed">
+                                                    <p>Diberitahukan bahwa berkas BAP Anda saat ini ditangguhkan. Untuk memperoleh informasi lebih lanjut, silakan datang langsung ke Kantor Imigrasi Kelas I Non TPI Pemalang pada hari dan jam kerja sebagai berikut:</p>
+                                                    <div class="mt-3 bg-white/50 p-2 rounded border border-red-100 grid grid-cols-2 gap-2 text-[11px] font-bold">
+                                                        <div>
+                                                            <span class="block text-red-600 text-[9px] uppercase tracking-tighter">Senin s.d. Kamis</span>
+                                                            <span>08.00 - 15.00 WIB</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="block text-red-600 text-[9px] uppercase tracking-tighter">Jumat</span>
+                                                            <span>08.00 - 15.30 WIB</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif($history->status_detail === 'Ditolak')
+                                    <div class="mt-4 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg shadow-sm">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="text-sm font-bold text-red-800 uppercase tracking-wider">Pemberitahuan:</h3>
+                                                <div class="mt-1 text-sm text-red-700 leading-relaxed">
+                                                    <p>Diberitahukan bahwa berkas BAP Anda saat ini ditolak. Untuk memperoleh informasi lebih lanjut, silakan datang langsung ke Kantor Imigrasi Kelas I Non TPI Pemalang pada hari dan jam kerja sebagai berikut:</p>
+                                                    <div class="mt-3 bg-white/50 p-2 rounded border border-red-100 grid grid-cols-2 gap-2 text-[11px] font-bold">
+                                                        <div>
+                                                            <span class="block text-red-600 text-[9px] uppercase tracking-tighter">Senin s.d. Kamis</span>
+                                                            <span>08.00 - 15.00 WIB</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="block text-red-600 text-[9px] uppercase tracking-tighter">Jumat</span>
+                                                            <span>08.00 - 15.30 WIB</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             @endif
                         @elseif($isCurrent && !$history)
                             <p class="text-sm text-gray-500 mt-1">Sedang dalam proses.</p>

@@ -185,12 +185,18 @@ class PemohonController extends Controller
         $latestStatus = $pemohon->latestStatus;
         $message = "";
 
-        // Automated message only for 'Disetujui'
-        if ($latestStatus && $latestStatus->status === 'Hasil BAP' && $latestStatus->status_detail === 'Disetujui') {
-            $message = "Diberitahukan bahwa proses BAP Anda telah selesai dan dapat dilanjutkan pada tahap foto Paspor. Dipersilahkan datang ke Kantor Imigrasi Kelas I Non TPI Pemalang pada hari dan jam kerja.\n\nHari & Jam Pelayanan:\nSenin s/d Kamis : 08.00 - 15.00\nJumat : 08.00 - 15.30";
+        // Automated message based on status
+        if ($latestStatus && $latestStatus->status === 'Hasil BAP') {
+            if ($latestStatus->status_detail === 'Disetujui') {
+                $message = "Diberitahukan bahwa proses BAP Anda telah selesai dan dapat dilanjutkan pada tahap foto Paspor. Dipersilahkan datang ke Kantor Imigrasi Kelas I Non TPI Pemalang pada hari dan jam kerja.\n\nHari & Jam Pelayanan:\nSenin s/d Kamis : 08.00 - 15.00\nJumat : 08.00 - 15.30";
+            } elseif ($latestStatus->status_detail === 'Penangguhan') {
+                $message = "Diberitahukan bahwa berkas BAP Anda saat ini ditangguhkan. Untuk memperoleh informasi lebih lanjut, silakan datang langsung ke Kantor Imigrasi Kelas I Non TPI Pemalang pada hari dan jam kerja sebagai berikut:\n\nSenin s.d. Kamis: 08.00 - 15.00 WIB\nJumat: 08.00 - 15.30 WIB";
+            } elseif ($latestStatus->status_detail === 'Ditolak') {
+                $message = "Diberitahukan bahwa berkas BAP Anda saat ini ditolak. Untuk memperoleh informasi lebih lanjut, silakan datang langsung ke Kantor Imigrasi Kelas I Non TPI Pemalang pada hari dan jam kerja sebagai berikut:\n\nSenin s.d. Kamis: 08.00 - 15.00 WIB\nJumat: 08.00 - 15.30 WIB";
+            }
         }
 
-        $url = "https://wa.me/{$no_hp}?text=" . urlencode($message);
+        $url = "https://wa.me/{$no_hp}?text=" . rawurlencode($message);
 
         return redirect()->away($url);
     }
